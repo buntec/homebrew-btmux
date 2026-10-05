@@ -12,9 +12,11 @@ cask "btmux" do
   app "btmux.app"
 
   # Ad-hoc signed, not notarized.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/btmux.app"]
+  postflight_steps do
+    run "/usr/bin/xattr",
+        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/btmux.app"],
+        writable_paths: ["btmux.app"],
+        writable_base:  :appdir
   end
 
   zap trash: [
