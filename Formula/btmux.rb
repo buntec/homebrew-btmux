@@ -5,24 +5,33 @@ class Btmux < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/buntec/btmux/releases/download/v0.0.125/btmux-aarch64-apple-darwin"
-      sha256 "c072cdd73b2518623542518dd0769a61f64a641c8f6fb47bc70000fcfe0303e9"
+      url "https://github.com/buntec/btmux/releases/download/v0.0.126/btmux-aarch64-apple-darwin"
+      sha256 "e4bab90f0e0e1a60436ff83cdf29c10955d2242f3d6c68c624438af6ef14f777"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/buntec/btmux/releases/download/v0.0.125/btmux-aarch64-unknown-linux-gnu"
-      sha256 "1414842c128bd22e2f9aba19f7087df100d1f67db7f578cadf6d87c1d21a5ebf"
+      url "https://github.com/buntec/btmux/releases/download/v0.0.126/btmux-aarch64-unknown-linux-gnu"
+      sha256 "6677bbd2ba3fd23cd65d03bfa614da3e18b724694d486c34a4f83165f77e17b9"
     end
     on_intel do
-      url "https://github.com/buntec/btmux/releases/download/v0.0.125/btmux-x86_64-unknown-linux-gnu"
-      sha256 "ce905328702158bf8ac9e3310e3e946f2d53c81437b31e0347f0f48caa06a9ba"
+      url "https://github.com/buntec/btmux/releases/download/v0.0.126/btmux-x86_64-unknown-linux-gnu"
+      sha256 "9bc7499f28fc44441f8903643f66c5651441912eaaaac586b7864a97d029638e"
     end
   end
 
   def install
     bin.install Dir["btmux-*"].first => "btmux"
+  end
+
+  def caveats
+    <<~EOS
+      A running background service keeps the old version until restarted:
+        btmux restart
+      If you installed it with an older btmux, re-run `btmux install` once so
+      it follows future upgrades.
+    EOS
   end
 
   test do
