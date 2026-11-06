@@ -1,6 +1,6 @@
 cask "btmux" do
-  version "0.0.193"
-  sha256 "1be2260a7b6cb16965510e222da4862613fec4d252dcc85badc013289efdcbbf"
+  version "0.0.194"
+  sha256 "6e7516b44fe1364794fc667cf8b1bf3ac84466e660e1e27831fa058c8b0784e4"
 
   url "https://github.com/buntec/btmux/releases/download/v#{version}/btmux-desktop-aarch64-apple-darwin.zip"
   name "btmux"
@@ -10,14 +10,6 @@ cask "btmux" do
   depends_on arch: :arm64
 
   app "btmux.app"
-
-  # Ad-hoc signed, not notarized.
-  postflight_steps do
-    run "/usr/bin/xattr",
-        args:           ["-dr", "com.apple.quarantine", "{{appdir}}/btmux.app"],
-        writable_paths: ["btmux.app"],
-        writable_base:  :appdir
-  end
 
   zap trash: [
     "~/Library/Application Support/btmux-desktop",
